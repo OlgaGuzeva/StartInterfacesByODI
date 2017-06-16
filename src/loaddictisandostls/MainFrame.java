@@ -1,6 +1,5 @@
 package loaddictisandostls;
 
-import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import static loaddictisandostls.Settings.PATH_TO_CAR;
@@ -45,6 +44,7 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         chosenServer = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         Car = new javax.swing.JLabel();
+        loadApsto = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuSettings = new javax.swing.JMenuItem();
@@ -56,14 +56,14 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         setIconImage(new ImageIcon(PATH_TO_ICON_LOADING).getImage());
         setName("Load dictionaries and ostls"); // NOI18N
 
-        LoadDicts.setText("Хочу грузить справочники");
+        LoadDicts.setText("Загрузка справочников");
         LoadDicts.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LoadDictsActionPerformed(evt);
             }
         });
 
-        LoadOstls.setText("Хочу грузить остатки");
+        LoadOstls.setText("Загрузка остатков");
         LoadOstls.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LoadOstlsActionPerformed(evt);
@@ -73,6 +73,7 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         statusField.setEditable(false);
         statusField.setColumns(20);
         statusField.setRows(5);
+        statusField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jScrollPane2.setViewportView(statusField);
 
         chosenServer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "45.2", "45.10" }));
@@ -85,6 +86,14 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
         jLabel1.setText("На каком сервере грузить:");
 
         Car.setIcon(new javax.swing.ImageIcon(PATH_TO_CAR));
+
+        loadApsto.setText("Загрузка необеспеченных рецептов");
+        loadApsto.setActionCommand("Загрузка необеспеченных рецептов");
+        loadApsto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadApstoActionPerformed(evt);
+            }
+        });
 
         jMenuBar1.setForeground(new java.awt.Color(204, 204, 204));
         jMenuBar1.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
@@ -111,15 +120,16 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(Car)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(chosenServer, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(LoadDicts, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(LoadOstls, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Car)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                    .addComponent(loadApsto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(LoadOstls, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -133,10 +143,11 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(LoadOstls)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(loadApsto)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Car)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Car))
         );
 
         pack();
@@ -151,6 +162,8 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
 
     private void LoadOstlsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoadOstlsActionPerformed
         startOdiInterface(prop.getProperty("OST_SCEN_NAME"),prop.getProperty("OST_SCEN_VERSION"));
+        isLoading = true;
+        startImage();
     }//GEN-LAST:event_LoadOstlsActionPerformed
 
     private void menuSettingsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuSettingsActionPerformed
@@ -160,6 +173,12 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
     private void chosenServerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chosenServerActionPerformed
         Settings.getSettings(chosenServer.getSelectedItem().toString());
     }//GEN-LAST:event_chosenServerActionPerformed
+
+    private void loadApstoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadApstoActionPerformed
+        startOdiInterface(prop.getProperty("REC_OTL_SCEN_NAME"),prop.getProperty("REC_OTL_SCEN_VERSION"));
+        isLoading = true;
+        startImage();
+    }//GEN-LAST:event_loadApstoActionPerformed
 
     private void startOdiInterface(String scenName, String scenVersion) {
         try{
@@ -224,6 +243,7 @@ public class MainFrame extends javax.swing.JFrame implements Runnable {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton loadApsto;
     private javax.swing.JMenuItem menuSettings;
     private javax.swing.JTextArea statusField;
     // End of variables declaration//GEN-END:variables

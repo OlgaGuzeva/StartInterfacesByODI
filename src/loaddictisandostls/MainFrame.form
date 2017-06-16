@@ -64,9 +64,13 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="Car" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
                   <Group type="102" attributes="0">
                       <Component id="jLabel1" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
@@ -74,11 +78,8 @@
                   </Group>
                   <Component id="jScrollPane2" alignment="1" max="32767" attributes="0"/>
                   <Component id="LoadDicts" alignment="1" max="32767" attributes="0"/>
-                  <Component id="LoadOstls" alignment="1" max="32767" attributes="0"/>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="Car" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="loadApsto" max="32767" attributes="0"/>
+                  <Component id="LoadOstls" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -96,10 +97,11 @@
               <EmptySpace max="-2" attributes="0"/>
               <Component id="LoadOstls" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane2" min="-2" pref="112" max="-2" attributes="0"/>
+              <Component id="loadApsto" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane2" min="-2" pref="87" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="Car" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -107,7 +109,7 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="LoadDicts">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x425;&#x43e;&#x447;&#x443; &#x433;&#x440;&#x443;&#x437;&#x438;&#x442;&#x44c; &#x441;&#x43f;&#x440;&#x430;&#x432;&#x43e;&#x447;&#x43d;&#x438;&#x43a;&#x438;"/>
+        <Property name="text" type="java.lang.String" value="&#x417;&#x430;&#x433;&#x440;&#x443;&#x437;&#x43a;&#x430; &#x441;&#x43f;&#x440;&#x430;&#x432;&#x43e;&#x447;&#x43d;&#x438;&#x43a;&#x43e;&#x432;"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LoadDictsActionPerformed"/>
@@ -115,7 +117,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="LoadOstls">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&#x425;&#x43e;&#x447;&#x443; &#x433;&#x440;&#x443;&#x437;&#x438;&#x442;&#x44c; &#x43e;&#x441;&#x442;&#x430;&#x442;&#x43a;&#x438;"/>
+        <Property name="text" type="java.lang.String" value="&#x417;&#x430;&#x433;&#x440;&#x443;&#x437;&#x43a;&#x430; &#x43e;&#x441;&#x442;&#x430;&#x442;&#x43a;&#x43e;&#x432;"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LoadOstlsActionPerformed"/>
@@ -133,6 +135,9 @@
             <Property name="editable" type="boolean" value="false"/>
             <Property name="columns" type="int" value="20"/>
             <Property name="rows" type="int" value="5"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Text Cursor"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>
@@ -164,6 +169,15 @@
           <Connection code="new javax.swing.ImageIcon(PATH_TO_CAR)" type="code"/>
         </Property>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="loadApsto">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="&#x417;&#x430;&#x433;&#x440;&#x443;&#x437;&#x43a;&#x430; &#x43d;&#x435;&#x43e;&#x431;&#x435;&#x441;&#x43f;&#x435;&#x447;&#x435;&#x43d;&#x43d;&#x44b;&#x445; &#x440;&#x435;&#x446;&#x435;&#x43f;&#x442;&#x43e;&#x432;"/>
+        <Property name="actionCommand" type="java.lang.String" value="&#x417;&#x430;&#x433;&#x440;&#x443;&#x437;&#x43a;&#x430; &#x43d;&#x435;&#x43e;&#x431;&#x435;&#x441;&#x43f;&#x435;&#x447;&#x435;&#x43d;&#x43d;&#x44b;&#x445; &#x440;&#x435;&#x446;&#x435;&#x43f;&#x442;&#x43e;&#x432;"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loadApstoActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

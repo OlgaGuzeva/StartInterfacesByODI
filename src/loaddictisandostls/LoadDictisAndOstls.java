@@ -58,6 +58,8 @@ public class LoadDictisAndOstls {
         propDflt.setProperty("DICT_SCEN_VERSION", "001");
         propDflt.setProperty("OST_SCEN_NAME", "LOAD_OSTLS_G__FULL");        
         propDflt.setProperty("OST_SCEN_VERSION", "001");
+        propDflt.setProperty("REC_OTL_SCEN_NAME", "LOAD_APSTO_FULL");        
+        propDflt.setProperty("REC_OTL_SCEN_VERSION", "001");
         return propDflt;
     }
 }
